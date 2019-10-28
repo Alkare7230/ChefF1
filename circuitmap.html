@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_6f817b54dc5e48e2a676ad810b4d642e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_6f817b54dc5e48e2a676ad810b4d642e" ></div>
+        
+</body>
+<script>    
+    
+            var map_6f817b54dc5e48e2a676ad810b4d642e = L.map(
+                "map_6f817b54dc5e48e2a676ad810b4d642e",
+                {
+                    center: [48.8534, 2.3488],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11.5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_bac07c9157d843c39df8d279d999b6fd = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_6f817b54dc5e48e2a676ad810b4d642e);
+        
+    
+            var fast_marker_cluster_1765dea456e7464081f12de0f87be7a5 = (function(){
+                
+                var callback = function (row) {
+                    var icon = L.AwesomeMarkers.icon();
+                    var marker = L.marker(new L.LatLng(row[0], row[1]));
+                    marker.setIcon(icon);
+                    return marker;
+                };
+
+                var data = [[-37.8497, 144.968, "Albert Park Grand Prix Circuit"], [2.76083, 101.738, "Sepang International Circuit"], [26.0325, 50.5106, "Bahrain International Circuit"], [41.57, 2.26111, "Circuit de Barcelona-Catalunya"], [40.9517, 29.405, "Istanbul Park"], [43.7347, 7.420560000000001, "Circuit de Monaco"], [45.5, -73.5228, "Circuit Gilles Villeneuve"], [46.8642, 3.16361, "Circuit de Nevers Magny-Cours"], [52.0786, -1.01694, "Silverstone Circuit"], [49.3278, 8.56583, "Hockenheimring"], [47.5789, 19.2486, "Hungaroring"], [39.4589, -0.331667, "Valencia Street Circuit"], [50.4372, 5.97139, "Circuit de Spa-Francorchamps"], [45.6156, 9.28111, "Autodromo Nazionale di Monza"], [1.2914, 103.86399999999999, "Marina Bay Street Circuit"], [35.3717, 138.92700000000002, "Fuji Speedway"], [31.3389, 121.22, "Shanghai International Circuit"], [-23.7036, -46.6997, "Aut\u00cc_dromo Jos\u00cc\u00a9 Carlos Pace"], [39.795, -86.2347, "Indianapolis Motor Speedway"], [50.3356, 6.9475, "N\u00cc_rburgring"], [44.3439, 11.7167, "Autodromo Enzo e Dino Ferrari"], [34.8431, 136.541, "Suzuka Circuit"], [47.2197, 14.7647, "A1-Ring"], [24.4672, 54.6031, "Yas Marina Circuit"], [-34.6943, -58.4593, "Aut\u00cc_dromo Juan y Oscar G\u00cc\u00c1lvez"], [36.7083, -6.03417, "Circuito de Jerez"], [38.7506, -9.394169999999999, "Aut\u00cc_dromo do Estoril"], [34.915, 134.221, "Okayama International Circuit"], [-34.9272, 138.61700000000002, "Adelaide Street Circuit"], [-25.9894, 28.0767, "Kyalami"], [52.8306, -1.3752799999999998, "Donington Park"], [19.4042, -99.0907, "Aut\u00cc_dromo Hermanos Rodr\u00cc_guez"], [33.4479, -112.075, "Phoenix street circuit"], [43.2506, 5.79167, "Circuit Paul Ricard"], [34.7333, 126.417, "Korean International Circuit"], [-22.9756, -43.395, "Aut\u00cc_dromo Internacional Nelson Piquet"], [42.3298, -83.0401, "Detroit Street Circuit"], [51.3569, 0.263056, "Brands Hatch"], [52.3888, 4.54092, "Circuit Park Zandvoort"], [50.9894, 5.25694, "Zolder"], [47.3625, 4.89913, "Dijon-Prenois"], [32.7774, -96.7587, "Fair Park"], [33.7651, -118.189, "Long Beach"], [36.1162, -115.17399999999999, "Las Vegas Street Circuit"], [40.6171, -3.58558, "Jarama"], [42.3369, -76.9272, "Watkins Glen"], [57.2653, 13.6042, "Scandinavian Raceway"], [44.0481, -78.6756, "Mosport International Raceway"], [41.3664, 2.15167, "Montju\u00cc\u00f8c"], [50.6211, 4.3269400000000005, "Nivelles-Baulers"], [45.7472, 3.0388900000000003, "Charade Circuit"], [46.1877, -74.6099, "Circuit Mont-Tremblant"], [49.3306, 1.00458, "Rouen-Les-Essarts"], [47.95, 0.22423099999999999, "Le Mans"], [49.2542, 3.9308300000000003, "Reims-Gueux"], [-33.0486, 27.8736, "Prince George Circuit"], [47.2039, 14.7478, "Zeltweg"], [53.4769, -2.94056, "Aintree"], [41.1705, -8.67325, "Circuito da Boavista"], [33.937, -117.273, "Riverside International Raceway"], [52.4806, 13.2514, "AVUS"], [38.7197, -9.20306, "Monsanto Park Circuit"], [27.4547, -81.3483, "Sebring International Raceway"], [33.5786, -7.6875, "Ain Diab"], [42.475, 14.1508, "Pescara Circuit"], [46.9589, 7.40194, "Circuit Bremgarten"], [41.3903, 2.11667, "Circuit de Pedralbes"], [28.3487, 77.5331, "Buddh International Circuit"], [30.1328, -97.6411, "Circuit of the Americas"], [47.2197, 14.7647, "Red Bull Ring"], [43.4057, 39.9578, "Sochi Autodrom"], [40.7769, -74.0111, "Port Imperial Street Circuit"], [40.3725, 49.8533, "Baku City Circuit"]];
+                var cluster = L.markerClusterGroup({});
+
+                for (var i = 0; i < data.length; i++) {
+                    var row = data[i];
+                    var marker = callback(row);
+                    marker.addTo(cluster);
+                }
+
+                cluster.addTo(map_6f817b54dc5e48e2a676ad810b4d642e);
+                return cluster;
+            })();
+        
+</script>
