@@ -1,0 +1,4 @@
+Le PAAS est un systeme de BDD online. Plusieurs société alloue ses derniers pour
+soit développer un projet, soit avoir une base de donnée de secours, l'inconvéniant 
+de ce systeme(en plus de coûter un bras) c'est qu'on est dépend de technologie 
+comme le Java.

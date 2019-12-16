@@ -31,16 +31,20 @@ import plotly.plotly as py
 from plotly.offline import iplot, init_notebook_mode
 import cufflinks
 import csv
-#_________________________________________________________________________________________________________________________#
+
+import scrapy as scp
+import bs4
+
+#________________________________ sea_________________________________________________________________________________________#
 
 #Ceci est sont tout mes CSV !!#
 
 circuits2 = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\circuits.csv", encoding='iso-8859-1')
-results = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\results.csv", encoding='iso-8859-1')
-driver = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\drivers.csv",  encoding='iso-8859-1')
-status = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\status.csv",  encoding='iso-8859-1')
-pitStp = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\pitStops.csv",  encoding='iso-8859-1')
-control = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\constructorResults.csv",  encoding='iso-8859-1')
+results = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\export\\resultatslFinal.csv", sep=',')
+driver = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\export\\pilotefinal.csv",  encoding='utf-8')
+status = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\export\\statufinal.csv",  encoding='iso-8859-1')
+pitStp = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\export\\controlfinal.csv",  encoding='iso-8859-1')
+control = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\export\\controlfinal.csv",  encoding='iso-8859-1')
 driverstand = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\driverStandings.csv",  encoding='iso-8859-1')
 race = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\race2.csv", encoding='utf-8', sep=',')
 qualif = pd.read_csv("C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\qualifying.csv", encoding='iso-8859-1')
@@ -57,7 +61,7 @@ season.head()
 del circuits2["url"]
 del circuits2["alt"]
 del driver['url']
-del control['status']
+del results['Unnamed: 0']
 
 driver.isna()
 driver.dropna(how='all')
@@ -67,6 +71,12 @@ driv = driver.fillna(0)
 qual  = qualif.fillna(0)
 #qualif.groupby('number').position.mean()## le prix moyen  des appartements des différents quatiers de paris
 
+#df1 = pandas.DataFrame({'A': [3, 5], 'B': [1, 2]}, index = [0, 1])
+#df2 = pandas.DataFrame({'A': [6, 7], 'B': [4, 9]}, index = [2, 3])
+#pandas.concat([df1, df2])
+
+df1 = circuits2.merge(driver, left_on=True, right_on=True, how='inner')
+resv = pd.rename(columns = {'rank' : 'stage', 'position' : 'post', 'time' :'temps'}, left_on='how_all')
 #__________________________________________________________________________________________________________________________#
 #Zone DATAVIZ
 #df['neighbourhood'].value_counts().plot.pie()#
@@ -84,16 +94,16 @@ qual  = qualif.fillna(0)
 
 plt.figure(figsize=(21, 14))
 sns.set(style="darkgrid")
-graph = sns.countplot(x="fastestLapSpeed", data=results)
+graph = sns.countplot(x="fastestLapTime", data=results)
 
-cam = qualif['number'].plot.pie()
+cam = ['post'].plot.pie()
 plt.show()
 
 cam.savefig('number.png')
 
 plt.figure(figsize=(1, 2))
 sns.set(style="darkgrid")
-graph = sns.countplot(x="number", y="position", data=qualif)
+graph = sns.countplot(x="positionOrder", y="forname", data=results, Pilote)
 
 meanlaps = res.laps.mean()
 valuelaps = res.laps.value_counts()
@@ -123,6 +133,9 @@ plt.show()
 
 
 
+merge = pd.merge(circuits2, driver, columns = {'name', 'forname', 'surname', 'lat', 'lng' }, left_on='all')
+
+
 #_____________________________________________________________________________________________________________#
 #Ecriture des modification#
 
@@ -132,7 +145,7 @@ control.to_csv('C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\control2.csv')
 driverstand.to_csv('C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\drivstand2.csv')
 pitStp.to_csv('C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\pitstop2.csv')
 qual.to_csv('C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\qualif2.csv')
-res.to_csv('C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\resultas2.csv')
+res.to_csv('C:\\Users\\user\\Desktop\\program\\F1chef\\csv\\export\\resultatslFinal.csv' , sep=',')
 #______________________________________________________________________________________________________________#
 #raceId,year,round,circuitId,name,date,time,url#
 def convertisseur(chemin):
@@ -171,11 +184,13 @@ def convertisseur(chemin):
 
 lats2019 = circuits2['lat'].tolist()
 lons2019 = circuits2['lng'].tolist()
-name2019 = circuits2['name'].tolist()
+name2019 = circuits2['circuitRef'].tolist()
+fast = results['fastestLapTime']
+
+
 locations = list(zip(lats2019, lons2019, name2019))
 
 map1 = folium.Map(location=[48.8534, 2.3488], zoom_start=11.5)
 FastMarkerCluster(data=locations).add_to(map1)
-map1.save('circuitmap.html')
+map1.save('C:\\Users\\user\\Desktop\\program\\F1chef\\template\\circuitmap.html')
 map1
-
