@@ -65,7 +65,7 @@ del results['Unnamed: 0']
 
 driver.isna()
 driver.dropna(how='all')
-finalres= res['position'].astype('int')
+res['fastestLapSpeed'].astype('str')
 res  = results.fillna(0)
 driv = driver.fillna(0)
 qual  = qualif.fillna(0)
@@ -185,12 +185,21 @@ def convertisseur(chemin):
 lats2019 = circuits2['lat'].tolist()
 lons2019 = circuits2['lng'].tolist()
 name2019 = circuits2['circuitRef'].tolist()
-fast = results['fastestLapTime']
+fast = results['fastestLapSpeed'].tolist()
 
 
-locations = list(zip(lats2019, lons2019, name2019))
+locations = list(zip(lats2019, lons2019, name2019, fast))
 
 map1 = folium.Map(location=[48.8534, 2.3488], zoom_start=11.5)
 FastMarkerCluster(data=locations).add_to(map1)
 map1.save('C:\\Users\\user\\Desktop\\program\\F1chef\\template\\circuitmap.html')
 map1
+
+
+
+#___________________________________________________________________________________#
+
+a = [ 'Sport',  'Cuisine',  'Cinéma',  'Jeux vidéo']
+
+for x in a:
+    print(a)

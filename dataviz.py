@@ -47,11 +47,11 @@ def accueil():
 
 @app.route('/pneu', methods=['GET', 'POST'])
 def pneu():
-    return render_template('pneu.html', title="Type Wheel")
+    return render_template('pneu.html')
 
 @app.route('/maps', methods=['GET', 'POST'])
 def maps():
-    return render_template('circuitmap.html', title='maps')
+    return render_template('circuitmap.html')
 
 
 if __name__ == "__main__":
